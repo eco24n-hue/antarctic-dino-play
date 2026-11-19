@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>남극 탈출 - DINO ESCAPE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+<style>:root{--glass:#ffffff29;--glass-strong:#ffffff3d;--line:#ffffff61;--ink:#0f1b3d;--text:#fff;--accent1:#5ee7ff;--accent2:#8b5cf6;--hot:#ff4d8d}*{box-sizing:border-box;margin:0;padding:0}html,body{touch-action:none;-webkit-user-select:none;user-select:none;width:100%;height:100%;color:var(--text);background:#cfe2f7;font-family:Noto Sans KR,Malgun Gothic,sans-serif;overflow:hidden}canvas#gl{display:block;position:fixed;top:0;bottom:0;left:0;right:0}.glass{background:var(--glass);border:1px solid var(--line);-webkit-backdrop-filter:blur(14px)saturate(140%);border-radius:18px;box-shadow:0 10px 30px #141e502e,inset 0 1px #fff6}#hud{pointer-events:none;z-index:5;position:fixed;top:0;bottom:0;left:0;right:0}#hud.hidden-play .play-only{display:none}#scoreCard{min-width:200px;padding:12px 18px 14px;position:absolute;top:16px;left:16px}#scoreCard .label{letter-spacing:3px;opacity:.8;font-size:11px;font-weight:700}#score{background:linear-gradient(90deg,#fff,#d9f8ff);color:#0000;text-shadow:0 2px 12px #5ee7ff59;-webkit-background-clip:text;background-clip:text;font-family:Black Han Sans,sans-serif;font-size:40px;line-height:1.05}.chips{flex-wrap:wrap;gap:6px;margin-top:8px;display:flex}.chip{white-space:nowrap;background:#0f1b3d47;border:1px solid #ffffff40;border-radius:999px;padding:4px 9px;font-size:12px;font-weight:700}#rightCol{flex-direction:column;align-items:flex-end;gap:10px;display:flex;position:absolute;top:16px;right:16px}#viewSwitch{pointer-events:auto;border-radius:999px;gap:4px;padding:4px;display:flex}#viewSwitch button{font:inherit;color:#fff;cursor:pointer;white-space:nowrap;background:0 0;border:none;border-radius:999px;padding:8px 14px;font-size:13px;font-weight:700;transition:background .2s,color .2s,transform .1s}#viewSwitch button:hover{background:#ffffff2e}#viewSwitch button.active{background:linear-gradient(135deg, var(--accent1), var(--accent2));box-shadow:0 4px 14px #8b5cf673}#viewSwitch button:active{transform:scale(.95)}#viewHint{opacity:.85;text-shadow:0 1px 4px #00000040;font-size:11px;font-weight:700}#minimapWrap{border-radius:50%;width:150px;height:150px;padding:5px}#minimap{border-radius:50%;width:100%;height:100%;display:block}#dinoCount{border-radius:999px;padding:6px 12px;font-size:13px;font-weight:900}#dashWrap{text-align:center;width:220px;padding:10px 14px;position:absolute;bottom:22px;left:50%;transform:translate(-50%)}#dashLabel{letter-spacing:1px;margin-bottom:6px;font-size:12px;font-weight:900}#dashBar{background:#0f1b3d4d;border-radius:99px;height:8px;overflow:hidden}#dashFill{background:linear-gradient(90deg, var(--accent1), var(--accent2));border-radius:99px;width:100%;height:100%;transition:filter .2s}#dashFill.ready{filter:drop-shadow(0 0 6px var(--accent1)) brightness(1.15)}#warn{color:#fff;opacity:0;white-space:nowrap;background:linear-gradient(135deg,#ff4d8dd9,#ff7a45d9);border-radius:999px;padding:8px 22px;font-family:Black Han Sans,sans-serif;font-size:30px;transition:opacity .2s;position:absolute;top:22%;left:50%;transform:translate(-50%);box-shadow:0 8px 30px #ff4d8d80}#warn.on{opacity:1;animation:.5s infinite alternate pulse}@keyframes pulse{to{transform:translate(-50%)scale(1.07)}}#vignette{pointer-events:none;z-index:4;opacity:0;background:radial-gradient(#ff285a00 45%,#ff285abf 100%);position:fixed;top:0;bottom:0;left:0;right:0}#floaters{pointer-events:none;z-index:6;position:fixed;top:0;bottom:0;left:0;right:0;overflow:hidden}.floater{white-space:nowrap;text-shadow:0 2px #ffffffe6,0 0 14px #fffc;font-family:Black Han Sans,sans-serif;position:absolute;transform:translate(-50%,-50%)}#dashBtn{width:78px;height:78px;font:inherit;color:#fff;border:1px solid var(--line);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);pointer-events:auto;background:linear-gradient(135deg,#5ee7ff8c,#8b5cf68c);border-radius:50%;font-size:15px;font-weight:900;display:none;position:absolute;bottom:26px;right:22px}@media (pointer:coarse){#dashBtn{display:block}}.overlay .card{margin:auto}.overlay{z-index:10;background:linear-gradient(160deg,#283c8c40,#8b5cf640);padding:16px;display:flex;position:fixed;top:0;bottom:0;left:0;right:0;overflow-y:auto}.overlay.hidden{display:none}.card{text-align:center;background:#ffffff2e;border-radius:28px;width:min(520px,100%);padding:30px 28px}.eyebrow{letter-spacing:6px;opacity:.9;font-size:12px;font-weight:900}h1{background:linear-gradient(120deg,#fff 10%,#a5f3ff 45%,#c4b5fd 80%);color:#0000;filter:drop-shadow(0 6px 18px #503cc859);-webkit-background-clip:text;background-clip:text;margin:8px 0 6px;font-family:Black Han Sans,sans-serif;font-size:clamp(46px,11vw,76px);font-weight:400;line-height:1}h2{background:linear-gradient(120deg,#fff,#ffc2d9);color:#0000;-webkit-background-clip:text;background-clip:text;font-family:Black Han Sans,sans-serif;font-size:clamp(30px,7vw,46px);font-weight:400}.sub{opacity:.95;margin:10px 0 18px;font-size:15px;line-height:1.7}.rules{text-align:left;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:18px;display:grid}.rule{background:#0f1b3d38;border:1px solid #fff3;border-radius:14px;padding:10px 12px;font-size:13px;line-height:1.45}.rule b{opacity:.8;margin-bottom:2px;font-size:12px;display:block}kbd{color:var(--ink);background:#fff;border-radius:6px;padding:1px 6px;font-family:inherit;font-size:11px;font-weight:900}.cta{font:inherit;letter-spacing:1px;color:#fff;cursor:pointer;background:linear-gradient(135deg, var(--accent1), var(--accent2) 60%, var(--hot));background-size:200% 200%;border:none;border-radius:999px;padding:14px 44px;font-size:18px;font-weight:900;transition:transform .12s;animation:4s infinite shimmer;box-shadow:0 10px 28px #8b5cf680}.cta:hover{transform:translateY(-2px)}.cta:active{transform:scale(.96)}@keyframes shimmer{0%,to{background-position:0%}50%{background-position:100%}}.stats{grid-template-columns:repeat(3,1fr);gap:8px;margin:16px 0 6px;display:grid}.stat{background:#0f1b3d38;border:1px solid #fff3;border-radius:14px;padding:10px 6px}.stat .v{font-family:Black Han Sans,sans-serif;font-size:24px}.stat .k{opacity:.8;font-size:11px;font-weight:700}#finalScore{margin-top:6px;font-family:Black Han Sans,sans-serif;font-size:54px;line-height:1.1}#newBest{color:#3b1500;background:linear-gradient(135deg,#ffd166,#ff7a45);border-radius:999px;margin-top:4px;padding:4px 12px;font-size:12px;font-weight:900;display:inline-block}.muted{opacity:.75;margin-top:12px;font-size:12px}.viewPick{opacity:.85;margin-top:12px;font-size:12px}.cta.revive{background:linear-gradient(135deg,#ff4d8d,#ff9a3c);animation:none;box-shadow:0 10px 28px #ff4d8d73}.cta:disabled{opacity:.5}.shopRow{justify-content:center;align-items:center;gap:10px;margin-top:16px;display:flex}.ghost{font:inherit;color:#fff;cursor:pointer;background:#0f1b3d40;border:1px solid #fff6;border-radius:999px;padding:9px 18px;font-size:13px;font-weight:900}.link{font:inherit;color:#fff;opacity:.8;cursor:pointer;background:0 0;border:none;font-size:12px;text-decoration:underline}.btnRow{flex-wrap:wrap;justify-content:center;gap:10px;display:flex}.baseCta{background:linear-gradient(135deg,#34d399,#0ea5e9);animation:none;position:relative;box-shadow:0 10px 28px #0ea5e973}.dot{background:#ff4d8d;border-radius:50%;width:10px;height:10px;display:none;position:absolute;top:6px;right:10px;box-shadow:0 0 0 2px #fff}.dot.on{display:block}.supplyChip{background:#0f1b3d40;border:1px solid #ffffff4d;border-radius:999px;margin-top:12px;padding:6px 14px;font-size:14px;font-weight:900;display:inline-block}.hotBtn{background:linear-gradient(135deg,#ff4d8dd9,#ff9a3cd9);border-color:#ffffff80}.ghost:disabled{opacity:.45;cursor:default}.rewardBox{background:#34d3992e;border:1px solid #ffffff4d;border-radius:16px;flex-wrap:wrap;justify-content:center;align-items:center;gap:12px;margin:14px 0;padding:12px;display:flex}.rewardLabel{opacity:.85;width:100%;font-size:12px;font-weight:700}.rewardVal{font-family:Black Han Sans,sans-serif;font-size:30px}.offVal{font-size:46px!important}.sideSheet{pointer-events:none;background:0 0;padding:0}.sheet{pointer-events:auto;background:#fff3;border-radius:24px;width:min(400px,100% - 24px);padding:20px 18px;position:absolute;top:12px;bottom:12px;right:12px;overflow-y:auto}@media (max-width:700px){.sheet{width:auto;max-height:62%;top:auto;bottom:8px;left:8px;right:8px}}.closeBtn{float:right;color:#fff;cursor:pointer;z-index:2;background:#0f1b3d4d;border:1px solid #ffffff80;border-radius:50%;width:36px;height:36px;font-size:16px;position:sticky;top:0}.baseHead{justify-content:space-between;align-items:flex-end;gap:10px;margin-bottom:14px;padding-right:44px;display:flex}.baseTitle{font-family:Black Han Sans,sans-serif;font-size:32px;line-height:1.1}.supplyBig{white-space:nowrap;font-family:Black Han Sans,sans-serif;font-size:22px}.prodCard{background:#0f1b3d38;border:1px solid #ffffff38;border-radius:16px;margin-bottom:12px;padding:12px}.prodTop{justify-content:space-between;gap:8px;font-size:13px;font-weight:700;display:flex}.prodBar{background:#0003;border-radius:99px;height:8px;margin:8px 0 10px;overflow:hidden}.prodBar div{background:linear-gradient(90deg,#34d399,#5ee7ff);border-radius:99px;height:100%}.prodBtns{gap:8px;display:flex}.prodBtns .ghost{flex:1}.bList{flex-direction:column;gap:8px;display:flex}.bCard{background:#0f1b3d2e;border:1px solid #fff3;border-radius:16px;align-items:center;gap:10px;padding:10px;display:flex}.bIcon{background:#fff3;border-radius:12px;flex-shrink:0;place-items:center;width:44px;height:44px;font-size:28px;display:grid}.bInfo{flex:1;min-width:0}.bName{font-size:15px;font-weight:900}.lv{background:linear-gradient(135deg, var(--accent1), var(--accent2));border-radius:99px;margin-left:4px;padding:1px 7px;font-size:11px}.bDesc{opacity:.92;margin-top:2px;font-size:12px;line-height:1.45}.next{opacity:.75}.upBtn{font:inherit;color:#fff;cursor:pointer;background:linear-gradient(135deg,#34d399,#0ea5e9);border:none;border-radius:12px;flex-shrink:0;min-width:84px;padding:10px;font-size:13px;font-weight:900;box-shadow:0 4px 12px #0ea5e959}.upBtn:disabled{box-shadow:none;opacity:.8;cursor:default;background:#0f1b3d59;font-size:11px}.upBtn.pop{animation:.35s pop}@keyframes pop{50%{transform:scale(1.15)}}#scoreCard{top:calc(16px + env(safe-area-inset-top));left:calc(16px + env(safe-area-inset-left))}#rightCol{top:calc(16px + env(safe-area-inset-top));right:calc(16px + env(safe-area-inset-right))}#dashWrap{bottom:calc(22px + env(safe-area-inset-bottom))}#dashBtn{bottom:calc(26px + env(safe-area-inset-bottom));right:calc(22px + env(safe-area-inset-right))}@media (max-width:600px){#scoreCard{min-width:0;padding:8px 12px 10px}#score{font-size:28px}#minimapWrap{width:104px;height:104px}#viewSwitch button{padding:6px 9px;font-size:12px}#viewHint{display:none}#dashWrap{width:170px;left:16px;transform:none}.rules{grid-template-columns:1fr}}</style>
+  <script type="module" crossorigin src="./assets/index-Bq4GmjK-.js"></script>
+</head>
+<body>
+<canvas id="gl"></canvas>
+<div id="vignette"></div>
+<div id="floaters"></div>
+
+<div id="hud" class="hidden-play">
+  <div id="scoreCard" class="glass play-only">
+    <div class="label">SCORE</div>
+    <div id="score">0</div>
+    <div class="chips">
+      <span class="chip" id="cTime">⏱ 0.0s</span>
+      <span class="chip" id="cCrate">📦 0</span>
+      <span class="chip" id="cTrap">🕳 0</span>
+      <span class="chip" id="cShield" style="display:none">🛡 0</span>
+    </div>
+  </div>
+  <div id="rightCol">
+    <div id="viewSwitch" class="glass">
+      <button data-view="top">탑뷰</button>
+      <button data-view="quarter">쿼터뷰</button>
+      <button data-view="chase">3인칭</button>
+      <button data-view="fps">1인칭</button>
+    </div>
+    <div id="viewHint">V 키 또는 1·2·3·4 로 시점 전환</div>
+    <div id="minimapWrap" class="glass play-only"><canvas id="minimap" width="300" height="300"></canvas></div>
+    <div id="dinoCount" class="glass play-only">🦖 × 1</div>
+  </div>
+  <div id="warn">⚠ 뒤에 공룡!</div>
+  <div id="dashWrap" class="glass play-only">
+    <div id="dashLabel">DASH READY · SPACE</div>
+    <div id="dashBar"><div id="dashFill"></div></div>
+  </div>
+  <button id="dashBtn" class="play-only">DASH</button>
+</div>
+
+<div id="start" class="overlay">
+  <div class="card glass">
+    <div class="eyebrow">ANTARCTIC · DINO ESCAPE</div>
+    <h1>남극 탈출</h1>
+    <p class="sub">얼음 속에서 깨어난 공룡들이 기지를 덮쳤다.<br>미끄러운 빙판 위에서 최대한 오래 살아남아라.</p>
+    <div class="rules">
+      <div class="rule"><b>이동</b><kbd>WASD</kbd> <kbd>방향키</kbd><br>3인칭·1인칭: A·D 회전, W 전진</div>
+      <div class="rule"><b>대시</b><kbd>SPACE</kbd> 순간 가속<br>모바일: DASH 버튼</div>
+      <div class="rule"><b>보너스</b>공룡을 🕳 얼음 구멍으로 유인하면 풍덩!</div>
+      <div class="rule"><b>주의</b>당신도 구멍에 빠지면 끝. 📦 상자는 +150</div>
+    </div>
+    <div class="btnRow">
+      <button class="cta" id="startBtn">START</button>
+      <button class="cta baseCta" id="baseBtn">🏠 기지<span class="dot" id="baseDot"></span></button>
+    </div>
+    <div class="supplyChip" id="supplyChip">📦 0</div>
+    <div class="viewPick">오른쪽 위에서 시점을 고를 수 있어요 · 게임 중에도 변경 가능</div>
+    <div class="shopRow">
+      <button class="ghost" id="removeAdsBtn">🚫 광고 제거</button>
+      <button class="link" id="restoreBtn">구매 복원</button>
+    </div>
+  </div>
+</div>
+
+<div id="over" class="overlay hidden">
+  <div class="card glass">
+    <div class="eyebrow">GAME OVER</div>
+    <h2 id="reason">잡아먹혔다!</h2>
+    <div id="finalScore">0</div>
+    <div id="newBest" style="display:none">🏆 NEW BEST</div>
+    <div class="stats">
+      <div class="stat"><div class="v" id="sTime">0s</div><div class="k">생존 시간</div></div>
+      <div class="stat"><div class="v" id="sCrate">0</div><div class="k">보급상자</div></div>
+      <div class="stat"><div class="v" id="sTrap">0</div><div class="k">빠뜨린 공룡</div></div>
+    </div>
+    <div class="muted" id="sBest">BEST 0</div>
+    <div class="rewardBox">
+      <div class="rewardLabel">기지로 가져갈 보급품</div>
+      <div class="rewardVal" id="rewardVal">+0 📦</div>
+      <button class="ghost hotBtn" id="doubleBtn">▶ 광고 보고 2배</button>
+    </div>
+    <button class="cta revive" id="reviveBtn">▶ 광고 보고 부활 (1회)</button>
+    <div style="height:10px"></div>
+    <div class="btnRow">
+      <button class="cta" id="retryBtn">RETRY</button>
+      <button class="cta baseCta" id="overBaseBtn">🏠 기지</button>
+    </div>
+    <div class="muted">Enter 키로도 재시작 · 보급품은 기지에 자동 입금돼요</div>
+  </div>
+</div>
+
+<div id="base" class="overlay sideSheet hidden">
+  <div class="sheet glass">
+    <button class="closeBtn" id="baseClose" aria-label="닫기">✕</button>
+    <div id="baseBody"></div>
+  </div>
+</div>
+
+<div id="offline" class="overlay hidden">
+  <div class="card glass">
+    <div class="eyebrow">WELCOME BACK</div>
+    <h2 style="background:linear-gradient(120deg,#fff,#a5f3ff);-webkit-background-clip:text;background-clip:text">기지 생산 완료!</h2>
+    <p class="sub">자리를 비운 동안 보급 공장이 일했어요</p>
+    <div class="offVal" style="font-family:'Black Han Sans',sans-serif"><span id="offVal">0</span> 📦</div>
+    <div style="height:14px"></div>
+    <button class="cta revive" id="offAdBtn">▶ 광고 보고 3배 받기</button>
+    <div style="height:10px"></div>
+    <button class="ghost" id="offBtn">그냥 받기</button>
+  </div>
+</div>
+
+</body>
+</html>
